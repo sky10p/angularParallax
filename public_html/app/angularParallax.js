@@ -60,6 +60,36 @@
 
     };
 
+    var skParallaxElement = function ($window) {
+        return{
+            restrict: 'A',
+            require: '^^skParallaxAnim',
+            scope: {
+                animation: '&skAnimation'
+            },
+            link: function (scope, element, attrs, controller) {
+                var element = $(element);
+                element.addClass('parallax-element');
+
+                angular.element($window).bind('scroll', function () {
+                    scope.$apply(function () {
+                        controller.isVisible = isInsideView(element);
+                        var position=controller.position = getRelativePosition(element);
+                        
+                       
+                        if(position){
+                            position=position/100;
+                            element.css("opacity",position);
+                        }else{
+                            element.css("opacity",1);
+                        }
+                        
+                    });
+
+                });
+            }
+        };
+    };
 
 
     var skParallaxAnim = function ($window) {
@@ -73,10 +103,8 @@
                 angular.element($window).bind('scroll', function () {
                     scope.$apply(function () {
                         scope.isVisible = isInsideView(element);
-
-
-                            scope.position = getRelativePosition(element);
-                            console.log(scope.position||"-1");
+                        scope.position = getRelativePosition(element);
+                           
                       
                     });
 
@@ -125,4 +153,6 @@
     angularParallax.directive('skParallax', skParallax);
 
     angularParallax.directive('skParallaxAnim', skParallaxAnim);
+    
+    angularParallax.directive('skParallaxElement',skParallaxElement);
 })();
