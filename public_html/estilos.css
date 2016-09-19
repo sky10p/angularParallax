@@ -21,3 +21,15 @@ body, html{
     height: 400px;
     
 }
+
+span.center{
+    text-align: center;
+}
+
+#fadeIn{
+    margin-top: 246px;
+}
+
+div#sideLeft {
+    margin-top: 113px;
+}

@@ -35,6 +35,29 @@
         return position_relative;
 
     };
+    
+    var animaciones_predefinidas={
+        fadeIn: function (elemento, position) {
+            if (position) {
+                position = position / 100;
+                elemento.css("opacity", position);
+            } else {
+                elemento.css("opacity", 1);
+            }
+        },
+        sideLeft: function(elemento, position){
+            var width=elemento.width();
+            if (position) {
+                position = -width+(width*position/100) ;
+                elemento.css("position","relative");
+                
+                elemento.css("left", position);
+            } else {
+                elemento.css("left", 0);
+            }
+        }
+    };
+
 
     var isInsideView = function (elemento) {
         var window_height = $(window).height();
@@ -65,7 +88,8 @@
             restrict: 'A',
             require: '^^skParallaxAnim',
             scope: {
-                animation: '&skAnimation'
+                animation: '@skAnimation',
+                animationComplex: '&skAnimationComplex'
             },
             link: function (scope, element, attrs, controller) {
                 var element = $(element);
@@ -76,13 +100,14 @@
                         controller.isVisible = isInsideView(element);
                         var position=controller.position = getRelativePosition(element);
                         
-                       
-                        if(position){
-                            position=position/100;
-                            element.css("opacity",position);
+                        if(!scope.animation){
+                            scope.animationComplex(element,position);
                         }else{
-                            element.css("opacity",1);
+                            animaciones_predefinidas[scope.animation](element,position);
                         }
+                        
+                       
+                        
                         
                     });
 
