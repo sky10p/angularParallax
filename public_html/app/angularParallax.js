@@ -7,10 +7,34 @@
 (function () {
 
     'use strict';
-    
-    
+
+
     var templateSkParallax = '<div><ng-transclude></ng-transclude></div>';
     var templateParallaxAnim = '<div class=\'skParallaxAnim\'><ng-transclude></ng-transclude></div>';
+
+    var getRelativePosition = function (elemento) {
+        var window_height = $(window).height();
+        var window_top_position = $(window).scrollTop();
+        var window_bottom_position = (window_top_position + window_height);
+
+
+
+        var $element = $(elemento);
+        var element_height = $element.outerHeight();
+        var element_top_position = $element.offset().top;
+        var element_bottom_position = (element_top_position + element_height);
+
+        var position_final = element_bottom_position - element_top_position;
+        var position_actual = window_bottom_position - element_top_position;
+
+
+        var position_relative = position_actual * 100 / position_final;
+        if(position_relative<0||position_relative>100){
+            position_relative=null;
+        }
+        return position_relative;
+
+    };
 
     var isInsideView = function (elemento) {
         var window_height = $(window).height();
@@ -28,15 +52,17 @@
         if ((element_bottom_position >= window_top_position) &&
                 (element_top_position <= window_bottom_position)) {
             $element.addClass('in-view');
+            return true;
         } else {
             $element.removeClass('in-view');
+            return false;
         }
 
     };
 
 
 
-    var skParallaxAnim = function () {
+    var skParallaxAnim = function ($window) {
         return{
             restrict: 'E',
             template: templateParallaxAnim,
@@ -44,12 +70,28 @@
             transclude: true,
             link: function (scope, element, attrs) {
 
+                angular.element($window).bind('scroll', function () {
+                    scope.$apply(function () {
+                        scope.isVisible = isInsideView(element);
+
+
+                            scope.position = getRelativePosition(element);
+                            console.log(scope.position||"-1");
+                      
+                    });
+
+                });
+
+                scope.height = $(element).height();
             },
             controller: function ($scope) {
                 $scope.isInsideView = isInsideView;
+
+
+
             }
         };
-    }
+    };
 
     var skParallax = function () {
         return {
