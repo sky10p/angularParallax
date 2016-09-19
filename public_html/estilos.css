@@ -22,14 +22,18 @@ body, html{
     
 }
 
+.clear{
+    clear: both;
+}
+
 span.center{
     text-align: center;
 }
 
-#fadeIn{
+div#fadeIn{
     margin-top: 246px;
 }
 
-div#sideLeft {
+div.skParallaxAnim {
     margin-top: 113px;
 }

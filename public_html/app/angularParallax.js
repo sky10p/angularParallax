@@ -38,6 +38,7 @@
     
     var animaciones_predefinidas={
         fadeIn: function (elemento, position) {
+            console.log(position);
             if (position) {
                 position = position / 100;
                 elemento.css("opacity", position);
@@ -54,6 +55,29 @@
                 elemento.css("left", position);
             } else {
                 elemento.css("left", 0);
+            }
+        },
+        sideRight: function(elemento, position){
+            var width=elemento.width();
+            if (position) {
+                position = -width+(width*position/100) ;
+                elemento.css("position","relative");
+                
+                elemento.css("right", position);
+            } else {
+                elemento.css("right", 0);
+            }
+        },
+        sideBottom: function(elemento, position){
+            
+            var height=elemento.height();
+            if (position) {
+                position = -height+(height*position/100) ;
+                elemento.css("position","relative");
+                
+                elemento.css("bottom", position);
+            } else {
+                elemento.css("bottom", 0);
             }
         }
     };
@@ -94,11 +118,11 @@
             link: function (scope, element, attrs, controller) {
                 var element = $(element);
                 element.addClass('parallax-element');
-
+                
                 angular.element($window).bind('scroll', function () {
                     scope.$apply(function () {
-                        controller.isVisible = isInsideView(element);
-                        var position=controller.position = getRelativePosition(element);
+                        
+                        var position=controller.position();
                         
                         if(!scope.animation){
                             scope.animationComplex(element,position);
@@ -124,22 +148,13 @@
             replace: true,
             transclude: true,
             link: function (scope, element, attrs) {
-
-                angular.element($window).bind('scroll', function () {
-                    scope.$apply(function () {
-                        scope.isVisible = isInsideView(element);
-                        scope.position = getRelativePosition(element);
-                           
-                      
-                    });
-
-                });
-
-                scope.height = $(element).height();
             },
-            controller: function ($scope) {
+            controller: function ($scope, $element) {
                 $scope.isInsideView = isInsideView;
-
+                this.position=function(){return getRelativePosition($element);};
+               
+                this.height=angular.element($element).height();
+                
 
 
             }
