@@ -30,7 +30,7 @@
         return (position-animationStart)*100/(animationEnd-animationStart);
         
         
-    }
+    };
 
     var getRelativePosition = function (elemento) {
         var window_height = $(window).height();
@@ -127,7 +127,7 @@
 
     };
 
-    var skParallaxElement = function ($window) {
+    var skParallaxElement = function ($window, $parse) {
         return{
             restrict: 'A',
             require: '^^skParallaxAnim',
@@ -137,8 +137,8 @@
                 animationStart: '@skAnimationStart',
                 animationEnd: '@skAnimationEnd'
             },
-            link: function (scope, element, attrs, controller) {
-                var element = $(element);
+            link: function (scope, elemento, attrs, controller) {
+                var element = $(elemento);
                 element.addClass('parallax-element');
                 
                 angular.element($window).bind('scroll', function () {
@@ -148,7 +148,10 @@
                         
                         position=precalcular_position_real(position, scope.animationStart, scope.animationEnd);
                         if(!scope.animation){
-                            scope.animationComplex(element,position);
+                     
+                       scope.animationComplex()(elemento,position);
+                     
+                            
                         }else{
                             animaciones_predefinidas[scope.animation](element,position);
                         }

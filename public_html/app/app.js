@@ -8,3 +8,9 @@
 var app=angular.module('app',[
     'angularParallax'
 ]);
+
+app.controller('appController', function($scope){
+    
+    
+   
+});
