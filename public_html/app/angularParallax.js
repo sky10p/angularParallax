@@ -11,6 +11,26 @@
 
     var templateSkParallax = '<div><ng-transclude></ng-transclude></div>';
     var templateParallaxAnim = '<div class=\'skParallaxAnim\'><ng-transclude></ng-transclude></div>';
+    
+    var precalcular_position_real=function(position, animationStart, animationEnd){
+        if(!animationStart || !animationEnd){
+            return position;
+        }
+        
+        if(position===null){
+            return null;
+        }
+        if(position>animationEnd){
+            return 100;
+        }
+        if(position<animationStart){
+            return 0.0;
+        }
+        
+        return (position-animationStart)*100/(animationEnd-animationStart);
+        
+        
+    }
 
     var getRelativePosition = function (elemento) {
         var window_height = $(window).height();
@@ -38,8 +58,8 @@
     
     var animaciones_predefinidas={
         fadeIn: function (elemento, position) {
-            console.log(position);
-            if (position) {
+            
+            if (position!==null) {
                 position = position / 100;
                 elemento.css("opacity", position);
             } else {
@@ -48,7 +68,7 @@
         },
         sideLeft: function(elemento, position){
             var width=elemento.width();
-            if (position) {
+            if (position!==null) {
                 position = -width+(width*position/100) ;
                 elemento.css("position","relative");
                 
@@ -59,7 +79,7 @@
         },
         sideRight: function(elemento, position){
             var width=elemento.width();
-            if (position) {
+            if (position!==null) {
                 position = -width+(width*position/100) ;
                 elemento.css("position","relative");
                 
@@ -71,7 +91,7 @@
         sideBottom: function(elemento, position){
             
             var height=elemento.height();
-            if (position) {
+            if (position!==null) {
                 position = -height+(height*position/100) ;
                 elemento.css("position","relative");
                 
@@ -113,7 +133,9 @@
             require: '^^skParallaxAnim',
             scope: {
                 animation: '@skAnimation',
-                animationComplex: '&skAnimationComplex'
+                animationComplex: '&skAnimationComplex',
+                animationStart: '@skAnimationStart',
+                animationEnd: '@skAnimationEnd'
             },
             link: function (scope, element, attrs, controller) {
                 var element = $(element);
@@ -124,6 +146,7 @@
                         
                         var position=controller.position();
                         
+                        position=precalcular_position_real(position, scope.animationStart, scope.animationEnd);
                         if(!scope.animation){
                             scope.animationComplex(element,position);
                         }else{

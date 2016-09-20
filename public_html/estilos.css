@@ -18,7 +18,8 @@ body, html{
     padding:0;
 }
 .big{
-    height: 400px;
+    height: 20px;
+    background-color: black;
     
 }
 
@@ -36,4 +37,17 @@ div#fadeIn{
 
 div.skParallaxAnim {
     margin-top: 113px;
+}
+
+div.textPequeño{
+    width: 33%;
+    float: left;
+}
+
+div#allEffectsFadeIn {
+    height: 365px;
+}
+
+div#allEffects {
+    height: 364px;
 }
