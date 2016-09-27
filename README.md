@@ -4,6 +4,10 @@ Esta librería sirve para añadir varias etiquetas para trabajar con los efectos
 
 ## Version inicial ##
 
+###  0.7.# ###
+
+*Adaptado a bower
+
 ### 0.6.0 ###
 
 * Version inicial

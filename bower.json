@@ -1,14 +1,9 @@
 {
   "name": "angularParallex",
-  "version": "0.6.0",
+  "version": "0.7.1",
   "main": "path/to/main.css",
   "ignore": [
-    "app",
-    "bower_components",
-    "images",
-    "*.css",
-    "*.html",
-    "**/*.txt"
+    "public_html"
   ],
   "dependencies": {
     "angular": "^1.5.8",
