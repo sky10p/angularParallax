@@ -3,7 +3,11 @@
   "version": "0.6.0",
   "main": "path/to/main.css",
   "ignore": [
-    ".jshintrc",
+    "app",
+    "bower_components",
+    "images",
+    "*.css",
+    "*.html",
     "**/*.txt"
   ],
   "dependencies": {
