@@ -1,6 +1,6 @@
 {
   "name": "angularParallex",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "main": "path/to/main.css",
   "ignore": [
     "public_html"
