@@ -127,7 +127,7 @@
 
     };
 
-    var skParallaxElement = function ($window, $parse) {
+    var skParallaxElement = ['$window','$parse',function ($window, $parse) {
         return{
             restrict: 'A',
             require: '^^skParallaxAnim',
@@ -164,10 +164,10 @@
                 });
             }
         };
-    };
+    }];
 
 
-    var skParallaxAnim = function ($window) {
+    var skParallaxAnim = ['$window',function ($window) {
         return{
             restrict: 'E',
             template: templateParallaxAnim,
@@ -175,7 +175,7 @@
             transclude: true,
             link: function (scope, element, attrs) {
             },
-            controller: function ($scope, $element) {
+            controller: ['$scope','$element',function ($scope, $element) {
                 $scope.isInsideView = isInsideView;
                 this.position=function(){return getRelativePosition($element);};
                
@@ -183,9 +183,9 @@
                 
 
 
-            }
+            }]
         };
-    };
+    }];
 
     var skParallax = function () {
         return {
