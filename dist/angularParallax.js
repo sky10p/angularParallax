@@ -99,6 +99,19 @@
             } else {
                 elemento.css("bottom", 0);
             }
+        },
+        rotate: function(elemento, position){
+            //var height=elemento.height();
+            var deg;
+            if (position!==null) {
+                deg=30*position/100-30;
+                position = position / 100;
+                elemento.css("opacity", position);
+            } else {
+                deg=0;
+                elemento.css("opacity", 1);
+            }
+            elemento.css('transform','rotate('+deg+'deg)');
         }
     };
 

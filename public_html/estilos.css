@@ -52,3 +52,15 @@ div#allEffects {
     height: 364px;
 }
 
+div#rotar{
+    height: 700px;
+}
+
+.small_rectangle {
+    background: red;
+    float: left;
+    margin: 2px;
+    width: 435px;
+    height: 294px;
+}
+
