@@ -84,6 +84,7 @@ Define la animacion que se va a realizar, hasta el momento existe:
 
 * fadeIn: El elemento es transparente y aparece según el scroll baja.
 * sideLeft-sideRight-sideBottom: El elemento aparece por uno de los lados.
+* rotate: El elemento rota según aparece.
 
 ## sk-animation-start y sk-animation-end ##
 
