@@ -4,7 +4,11 @@ Esta librería sirve para añadir varias etiquetas para trabajar con los efectos
 
 ## Version inicial ##
 
-###  0.7.# ###
+### 1.0.0 ###
+
+Añadido animacion rotate
+
+###  0.7.2 ###
 
 *Adaptado a bower
 

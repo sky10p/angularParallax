@@ -1,9 +1,13 @@
 {
   "name": "angularParallex",
-  "version": "0.7.2",
+  "version": "1.0.0",
   "main": "path/to/main.css",
   "ignore": [
-    "public_html"
+    "public_html",
+	"node_modules",
+	"test",
+	"nbproject",
+	".git"
   ],
   "dependencies": {
     "angular": "^1.5.8",
