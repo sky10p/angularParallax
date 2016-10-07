@@ -1,7 +1,7 @@
 {
   "name": "angularParallex",
   "version": "1.0.0",
-  "main": "dist/angularParallax.min.js",
+  "main": "dist/angularParallax.js",
   "ignore": [
     "public_html",
 	"node_modules",
