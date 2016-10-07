@@ -2,6 +2,10 @@
 
 Esta librería sirve para añadir varias etiquetas para trabajar con los efectos Parallax y los efectos de animaciones según el scroll.
 
+# Pagina de muestra #
+
+http://htmlpreview.github.io/?https://github.com/sky10p/angularParallax/blob/master/public_html/index.html
+
 ## Version inicial ##
 
 ### 1.0.0 ###
